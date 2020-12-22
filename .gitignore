@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AzureTest/ClientApp/cypress/results/junit
+/AzureTest/ClientApp/cypress/videos
+/AzureTest/ClientApp/.nyc_output
+/AzureTest/ClientApp/output
+/AzureTest/ClientApp/coverage
+/.vs

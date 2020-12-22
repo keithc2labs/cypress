@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+stages:
+  - stage: test
+    jobs:
+    - job: Unit_Test
+      steps:
+        - script: npm install
+          workingDirectory: ./AzureTest/ClientApp
+          displayName: Run npm install
+        - script: |
+           set NODE_ENV="production"
+           dotnet publish -c release -o pub
+          workingDirectory: ./AzureTest
+          displayName: Publish app to pub directory
+        - script: |
+           mkdir files          
+           ./AzureTest &
+          workingDirectory: ./AzureTest/pub
+          displayName: Run published app in background
+        - script: |
+           sleep 10
+           export DEBUG=code-coverage
+           npx cypress run
+          continueOnError: 'true'
+          workingDirectory: ./AzureTest/ClientApp
+          displayName: Run cypress tests
+        - script: |
+           ls -alF
+          workingDirectory: ./AzureTest/ClientApp
+          displayName: Run cypress tests

@@ -1,0 +1,11 @@
+{
+  "projectId": "atlas",
+  "viewportWidth": 1480,
+  "viewportHeight": 800,
+  "screenshotOnRunFailure": false,
+  "video": false,
+  "reporter": "mocha-junit-reporter",
+  "reporterOptions": {
+    "mochaFile": "cypress/results/junit/JUNIT-[hash].xml"
+  }
+}
